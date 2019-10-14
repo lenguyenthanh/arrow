@@ -29,4 +29,11 @@ interface FunctorFilter<F> : Functor<F> {
    */
   fun <A> Kind<F, A>.filter(f: (A) -> Boolean): Kind<F, A> =
     filterMap { a -> if (f(a)) Some(a) else None }
+
+  /**
+   * Apply a filter to a structure such that the output structure contains all instances of specified class.
+   */
+  @Suppress("UNCHECKED_CAST")
+  fun <A, B> Kind<F, A>.filterIsInstance(klass: Class<B>): Kind<F, B> =
+    filterMap { a -> if(klass.isInstance(a)) Some(a as B) else None }
 }
