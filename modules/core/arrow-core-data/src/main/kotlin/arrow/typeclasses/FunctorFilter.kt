@@ -35,5 +35,5 @@ interface FunctorFilter<F> : Functor<F> {
    */
   @Suppress("UNCHECKED_CAST")
   fun <A, B> Kind<F, A>.filterIsInstance(klass: Class<B>): Kind<F, B> =
-    filterMap { a -> if(klass.isInstance(a)) Some(a as B) else None }
+    filterMap { a -> if (klass.isInstance(a)) Some(a as B) else None }
 }
